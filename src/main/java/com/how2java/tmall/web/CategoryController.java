@@ -52,4 +52,13 @@ public class CategoryController {
         BufferedImage img= ImageUtil.change2jpg(file);
         ImageIO.write(img,"jpg",file);
     }
+
+    @DeleteMapping("/categories/{id}")
+    public String delete(@PathVariable("id") int id,HttpServletRequest request) throws Exception{
+        categoryService.delete(id);
+        File imageFolder=new File(request.getServletContext().getRealPath("img/category"));
+        File file=new File(imageFolder,id+".jpg");
+        file.delete();
+        return null;
+    }
 }
