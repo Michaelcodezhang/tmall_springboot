@@ -43,7 +43,6 @@ public class CategoryController {
                                       HttpServletRequest request)
             throws Exception{
         File imageFolder=new File(request.getServletContext().getRealPath("img/category"));
-        System.out.println(request.getServletContext().getRealPath(""));
         File file=new File(imageFolder,bean.getId()+".jpg");
         if(!file.getParentFile().exists()){
             file.getParentFile().mkdirs();
@@ -60,5 +59,24 @@ public class CategoryController {
         File file=new File(imageFolder,id+".jpg");
         file.delete();
         return null;
+    }
+
+    @GetMapping("/categories/{id}")
+    public Category get(@PathVariable("id") int id) throws Exception{
+        Category bean=categoryService.get(id);
+        return bean;
+    }
+
+    @PutMapping("/categories/{id}")
+    public Object update(Category bean,MultipartFile image,
+                         HttpServletRequest request) throws Exception{
+        String name=request.getParameter("name");
+        bean.setName(name);
+        categoryService.update(bean);
+
+        if(image!=null){
+            saveOrUpdateImageFile(bean,image,request);
+        }
+        return bean;
     }
 }
