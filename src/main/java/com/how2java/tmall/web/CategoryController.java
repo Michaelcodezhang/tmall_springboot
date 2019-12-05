@@ -2,12 +2,17 @@ package com.how2java.tmall.web;
 
 import com.how2java.tmall.pojo.Category;
 import com.how2java.tmall.service.CategoryService;
+import com.how2java.tmall.util.ImageUtil;
 import com.how2java.tmall.util.Page4Navigator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.List;
 
 //***********负责接受View层请求的Servlet（controller层/注入了service层获得的数据）***********
@@ -25,5 +30,26 @@ public class CategoryController {
         start=start<0?0:start;
         Page4Navigator<Category> page=categoryService.list(start,size,5);
         return page;
+    }
+
+    @PostMapping("/categories")
+    public Object add(Category bean,MultipartFile image,HttpServletRequest request)
+            throws Exception{
+        categoryService.add(bean);
+        saveOrUpdateImageFile(bean,image,request);
+        return bean;
+    }
+    public void saveOrUpdateImageFile(Category bean, MultipartFile image,
+                                      HttpServletRequest request)
+            throws Exception{
+        File imageFolder=new File(request.getServletContext().getRealPath("img/category"));
+        System.out.println(request.getServletContext().getRealPath(""));
+        File file=new File(imageFolder,bean.getId()+".jpg");
+        if(!file.getParentFile().exists()){
+            file.getParentFile().mkdirs();
+        }
+        image.transferTo(file);
+        BufferedImage img= ImageUtil.change2jpg(file);
+        ImageIO.write(img,"jpg",file);
     }
 }
