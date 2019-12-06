@@ -7,18 +7,26 @@ import java.util.List;
 public class Page4Navigator<T> {
     Page<T> pageFromJPA;
 
+    //分页导航栏显示页码数
     int navigatePages;
+    //总页数
     int totalPages;
+    //当前页码
     int number;
+    //总条目数
     long totalElements;
+    //页面大小
     int size;
+    //当前页面条目数
     int numberOfElements;
+    //条目内容
     List<T> content;
     boolean isHasContent;
     boolean first;
     boolean last;
     boolean isHasNext;
     boolean isHasPrevious;
+    //分页导航栏页码
     int[] navigatepageNums;
 
     public Page4Navigator(){
@@ -44,6 +52,8 @@ public class Page4Navigator<T> {
         calcNavigatepageNums();
     }
 
+
+    //计算分页导航栏页码数，即初始化navigatepageNums[]数组
     private void calcNavigatepageNums(){
         int navigatepageNums[];
         int totalPages=getTotalPages();
