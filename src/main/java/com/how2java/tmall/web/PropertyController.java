@@ -18,6 +18,7 @@ public class PropertyController {
             @RequestParam(value = "start",defaultValue = "0") int start,
             @RequestParam(value = "size",defaultValue = "5") int size)
             throws Exception{
+        start=start<0?0:start;
         Page4Navigator<Property> page4Navigator=propertyService.list(cid,start,size,5);
         return page4Navigator;
     }
