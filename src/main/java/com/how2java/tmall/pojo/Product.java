@@ -25,6 +25,9 @@ public class Product {
     @JoinColumn(name = "cid")
     private Category category;
 
+    @Transient
+    private ProductImage firstProductImage;
+
     public int getId() {
         return id;
     }
@@ -87,5 +90,13 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public ProductImage getFirstProductImage() {
+        return firstProductImage;
+    }
+
+    public void setFirstProductImage(ProductImage firstProductImage) {
+        this.firstProductImage = firstProductImage;
     }
 }
