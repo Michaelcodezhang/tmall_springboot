@@ -1,0 +1,2732 @@
+
+        <html xmlns:v="urn:schemas-microsoft-com:vml"
+        xmlns:o="urn:schemas-microsoft-com:office:office"
+        xmlns:w="urn:schemas-microsoft-com:office:word"
+        xmlns="http://www.w3.org/TR/REC-html40">
+        <head><meta http-equiv=Content-Type content="text/html;  
+        charset=utf-8">
+        <style type="text/css">
+            table  
+            {  
+                border-collapse: collapse;
+                border: none;  
+                width: 100%;  
+            }  
+            td  
+            {  
+                border: solid #CCC 1px;  
+            }  
+            .codestyle{
+                word-break: break-all;
+                background:silver;mso-highlight:silver;
+            }
+        </style>
+        <meta name=ProgId content=Word.Document>
+        <meta name=Generator content="Microsoft Word 11">
+        <meta name=Originator content="Microsoft Word 11">
+        <xml><w:WordDocument><w:View>Print</w:View></xml></head>
+        <body><h1>1、天猫整站后端项目API文档</h1><div style="margin-left:0px;"><h2>1.1、前台部分</h2><div style="margin-left:0px;"></div><h2>1.2、后台部分</h2><div style="margin-left:0px;"><h2>1.2.1、分类管理</h2><div style="margin-left:0px;"><h3>1.2.1.1、分类条目分页获取</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>分类管理列表项分页获取（含导航栏信息）</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://127.0.0.1:8080/tmall_springboot/categories</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">start</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>页码</td>
+</tr>
+<tr>
+<td style="text-align: left;">size</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>每页大小</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "navigatePages": 5,
+    "totalPages": 5,
+    "number": 2,
+    "totalElements": 22,
+    "size": 5,
+    "numberOfElements": 5,
+    "content": [
+        {
+            "id": 17,
+            "name": "测试分类3"
+        },
+        {
+            "id": 16,
+            "name": "测试分类2"
+        },
+        {
+            "id": 15,
+            "name": "测试分类1"
+        },
+        {
+            "id": 14,
+            "name": "测试分类5"
+        },
+        {
+            "id": 13,
+            "name": "测试分类4"
+        }
+    ],
+    "first": false,
+    "last": false,
+    "navigatepageNums": [
+        1,
+        2,
+        3,
+        4,
+        5
+    ],
+    "hasContent": true,
+    "hasPrevious": true,
+    "hasNext": true
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">navigatePages</td>
+<td style="text-align: left;">int</td>
+<td>导航栏展示页码数</td>
+</tr>
+<tr>
+<td style="text-align: left;">totalPages</td>
+<td style="text-align: left;">int</td>
+<td>总页数</td>
+</tr>
+<tr>
+<td style="text-align: left;">number</td>
+<td style="text-align: left;">int</td>
+<td>当前页码数</td>
+</tr>
+<tr>
+<td style="text-align: left;">totalElements</td>
+<td style="text-align: left;">int</td>
+<td>总条目数</td>
+</tr>
+<tr>
+<td style="text-align: left;">size</td>
+<td style="text-align: left;">int</td>
+<td>页面大小</td>
+</tr>
+<tr>
+<td style="text-align: left;">numberOfElements</td>
+<td style="text-align: left;">int</td>
+<td>当前页面条目数</td>
+</tr>
+<tr>
+<td style="text-align: left;">content</td>
+<td style="text-align: left;">array（Object）</td>
+<td>分类条目内容</td>
+</tr>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int</td>
+<td>分类条目id</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">string</td>
+<td>分类条目名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">first</td>
+<td style="text-align: left;">boolean</td>
+<td>是否是第一页</td>
+</tr>
+<tr>
+<td style="text-align: left;">last</td>
+<td style="text-align: left;">boolean</td>
+<td>是否是最后一页</td>
+</tr>
+<tr>
+<td style="text-align: left;">navigatepageNums</td>
+<td style="text-align: left;">array（int）</td>
+<td>导航条数字</td>
+</tr>
+<tr>
+<td style="text-align: left;">hasContent</td>
+<td style="text-align: left;">boolean</td>
+<td>是否有分类条目</td>
+</tr>
+<tr>
+<td style="text-align: left;">hasPrevious</td>
+<td style="text-align: left;">boolean</td>
+<td>是否有上一页</td>
+</tr>
+<tr>
+<td style="text-align: left;">hasNext</td>
+<td style="text-align: left;">boolean</td>
+<td>是否有下一页</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul>
+<p>欢迎使用ShowDoc！</p></div><h3>1.2.1.2、增加分类</h3><div style="margin-left:30px;"><p>欢迎使用ShowDoc！</p>
+<p><strong>简要描述：</strong> </p>
+<ul>
+<li>增加新分类接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://127.0.0.1:8080/tmall_springboot/categories</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>分类名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">image</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">binary（img）</td>
+<td>分类图片</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "id": 28,
+    "name": "皮鞋"
+  }</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int</td>
+<td>分类条目id</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">string</td>
+<td>分类条目名称</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h3>1.2.1.3、删除分类</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>删除分类接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://127.0.0.1:8080/tmall_springboot/{id}</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>DELETE </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>分类条目id，注：此项为路径参数</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  null</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul>
+<p>欢迎使用ShowDoc！</p></div><h3>1.2.1.4、编辑修改分类</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>编辑修改分类接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://127.0.0.1:8080/categories/{id}</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>PUT </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>分类条目id，注：此项为路径参数</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>分类名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">image</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">binary（img）</td>
+<td>分类图片</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "id": 28,
+    "name": "皮鞋"
+  }</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int</td>
+<td>分类条目id</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">string</td>
+<td>分类条目名称</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul>
+<p>欢迎使用ShowDoc！**</p></div><h3>1.2.1.5、分类条目单个获取</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>分类条目获取接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://127.0.0.1:8080/tmall_springboot/categories/{id}</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>get </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>分类id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "id": 28,
+    "name": "皮鞋"
+  }</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int</td>
+<td>分类条目id</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">string</td>
+<td>分类名称</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul>
+<p>欢迎使用ShowDoc！</p></div></div><h2>1.2.2、属性管理</h2><div style="margin-left:0px;"><h3>1.2.2.1、属性分页获取</h3><div style="margin-left:30px;"><p>欢迎使用ShowDoc！</p>
+<p><strong>简要描述：</strong> </p>
+<ul>
+<li>属性管理列表项分页获取（含导航栏信息）</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://localhost:8080/tmall_springboot/categories/{cid}/properties?start=0&size=6</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">cid</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>属性所属分类的id</td>
+</tr>
+<tr>
+<td style="text-align: left;">start</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>页码</td>
+</tr>
+<tr>
+<td style="text-align: left;">size</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>每页大小</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "navigatePages": 5,
+    "totalPages": 1,
+    "number": 0,
+    "totalElements": 4,
+    "size": 6,
+    "numberOfElements": 4,
+    "content": [
+        {
+            "id": 8,
+            "name": "适用场合",
+            "category": {
+                "id": 28,
+                "name": "皮鞋"
+            }
+        },
+        {
+            "id": 7,
+            "name": "适龄人群",
+            "category": {
+                "id": 28,
+                "name": "皮鞋"
+            }
+        },
+        {
+            "id": 6,
+            "name": "材质",
+            "category": {
+                "id": 28,
+                "name": "皮鞋"
+            }
+        },
+        {
+            "id": 4,
+            "name": "软度",
+            "category": {
+                "id": 28,
+                "name": "皮鞋"
+            }
+        }
+    ],
+    "first": true,
+    "last": true,
+    "navigatepageNums": [
+        1
+    ],
+    "hasPrevious": false,
+    "hasContent": true,
+    "hasNext": false
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">navigatePages</td>
+<td style="text-align: left;">int</td>
+<td>导航栏展示页码数</td>
+</tr>
+<tr>
+<td style="text-align: left;">totalPages</td>
+<td style="text-align: left;">int</td>
+<td>总页数</td>
+</tr>
+<tr>
+<td style="text-align: left;">number</td>
+<td style="text-align: left;">int</td>
+<td>当前页码数</td>
+</tr>
+<tr>
+<td style="text-align: left;">totalElements</td>
+<td style="text-align: left;">int</td>
+<td>总条目数</td>
+</tr>
+<tr>
+<td style="text-align: left;">size</td>
+<td style="text-align: left;">int</td>
+<td>页面大小</td>
+</tr>
+<tr>
+<td style="text-align: left;">numberOfElements</td>
+<td style="text-align: left;">int</td>
+<td>当前页面条目数</td>
+</tr>
+<tr>
+<td style="text-align: left;">content</td>
+<td style="text-align: left;">array（Object）</td>
+<td>属性条目内容</td>
+</tr>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int</td>
+<td>属性id</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">string</td>
+<td>属性名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">first</td>
+<td style="text-align: left;">boolean</td>
+<td>是否是第一页</td>
+</tr>
+<tr>
+<td style="text-align: left;">last</td>
+<td style="text-align: left;">boolean</td>
+<td>是否是最后一页</td>
+</tr>
+<tr>
+<td style="text-align: left;">navigatepageNums</td>
+<td style="text-align: left;">array（int）</td>
+<td>导航条数字</td>
+</tr>
+<tr>
+<td style="text-align: left;">hasContent</td>
+<td style="text-align: left;">boolean</td>
+<td>是否有分类条目</td>
+</tr>
+<tr>
+<td style="text-align: left;">hasPrevious</td>
+<td style="text-align: left;">boolean</td>
+<td>是否有上一页</td>
+</tr>
+<tr>
+<td style="text-align: left;">hasNext</td>
+<td style="text-align: left;">boolean</td>
+<td>是否有下一页</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul>
+<p>欢迎使用ShowDoc！</p></div><h3>1.2.2.2、增加属性</h3><div style="margin-left:30px;"><p>欢迎使用ShowDoc！</p>
+<p><strong>简要描述：</strong> </p>
+<ul>
+<li>增加新属性接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://localhost:8080/tmall_springboot/properties</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>属性名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">category</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">Object</td>
+<td>属性所属分类对象</td>
+</tr>
+<tr>
+<td style="text-align: left;">category.id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>分类id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>请求body示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "name":"test2",
+    "category":{
+        "id":"28"
+    }
+}</code></pre></table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "id": 21,
+    "name": "test2",
+    "category": {
+        "id": 28,
+        "name": null
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int</td>
+<td>属性条目id</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">string</td>
+<td>属性名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">category</td>
+<td style="text-align: left;">Object</td>
+<td>属性所属分类对象</td>
+</tr>
+<tr>
+<td style="text-align: left;">category.id</td>
+<td style="text-align: left;">int</td>
+<td>分类id</td>
+</tr>
+<tr>
+<td style="text-align: left;">category.name</td>
+<td style="text-align: left;">string</td>
+<td>分类名称</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h3>1.2.2.3、删除属性</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>删除属性接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://localhost:8080/tmall_springboot/properties/{id}</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>DELETE </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>属性id，注：此项为路径参数</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  null</code></pre></table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul>
+<p>欢迎使用ShowDoc！</p></div><h3>1.2.2.4、编辑修改属性</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>编辑修改属性接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://localhost:8080/tmall_springboot/properties</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>PUT </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>属性id</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>属性名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">category</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">Object</td>
+<td>属性所属分类对象</td>
+</tr>
+<tr>
+<td style="text-align: left;">category.id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>分类id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Header：</strong></p>
+<table width='100%' class='codestyle'><pre><code>Content-Type:application/json;charset=UTF-8
+</code></pre></table>
+<p><strong>请求body示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "id":"10",
+    "name":"test5",
+    "category":{
+        "id":"28"
+    }
+}</code></pre></table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "id": 23,
+    "name": "test7",
+    "category": {
+        "id": 28,
+        "name": null
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int</td>
+<td>属性id</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">string</td>
+<td>属性名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">category</td>
+<td style="text-align: left;">Object</td>
+<td>属性所属分类对象</td>
+</tr>
+<tr>
+<td style="text-align: left;">category.id</td>
+<td style="text-align: left;">int</td>
+<td>分类id</td>
+</tr>
+<tr>
+<td style="text-align: left;">category.name</td>
+<td style="text-align: left;">string</td>
+<td>分类名称</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul>
+<p>欢迎使用ShowDoc！**</p></div><h3>1.2.2.5、获取单个属性</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>获取单个属性接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://127.0.0.1:8080/tmall_springboot/properties/{id}</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>get </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>分类id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "id": 3,
+    "name": "xxx",
+    "category": {
+        "id": 29,
+        "name": "新测试haha"
+    }
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int</td>
+<td>属性条目id</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">string</td>
+<td>属性名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">category</td>
+<td style="text-align: left;">Object</td>
+<td>属性所属分类对象</td>
+</tr>
+<tr>
+<td style="text-align: left;">category.id</td>
+<td style="text-align: left;">int</td>
+<td>分类id</td>
+</tr>
+<tr>
+<td style="text-align: left;">category.name</td>
+<td style="text-align: left;">string</td>
+<td>分类名称</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul>
+<p>欢迎使用ShowDoc！</p></div></div><h2>1.2.3、产品管理</h2><div style="margin-left:0px;"><h3>1.2.3.1、产品分页获取</h3><div style="margin-left:30px;"><p>欢迎使用ShowDoc！</p>
+<p><strong>简要描述：</strong> </p>
+<ul>
+<li>产品管理列表项分页获取（含导航栏信息）</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://localhost:8080/tmall_springboot/categories/{cid}/products?start=0&size=6</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">cid</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>属性所属分类的id</td>
+</tr>
+<tr>
+<td style="text-align: left;">start</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>页码</td>
+</tr>
+<tr>
+<td style="text-align: left;">size</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>每页大小</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "navigatePages": 5,
+    "totalPages": 1,
+    "number": 0,
+    "totalElements": 1,
+    "size": 5,
+    "numberOfElements": 1,
+    "content": [
+        {
+            "id": 5,
+            "name": "穿不烂皮鞋",
+            "subTitle": "穿不烂皮鞋，你烂了我都不烂",
+            "originalPrice": 80000.0,
+            "promotePrice": 80.0,
+            "stock": 9000,
+            "createDate": 908928000000,
+            "category": {
+                "id": 28,
+                "name": "皮鞋"
+            },
+            "firstProductImage": {
+                "id": 7,
+                "type": "single"
+            }
+        }
+    ],
+    "first": true,
+    "last": true,
+    "navigatepageNums": [
+        1
+    ],
+    "hasPrevious": false,
+    "hasContent": true,
+    "hasNext": false
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">navigatePages</td>
+<td style="text-align: left;">int</td>
+<td>导航栏展示页码数</td>
+</tr>
+<tr>
+<td style="text-align: left;">totalPages</td>
+<td style="text-align: left;">int</td>
+<td>总页数</td>
+</tr>
+<tr>
+<td style="text-align: left;">number</td>
+<td style="text-align: left;">int</td>
+<td>当前页码数</td>
+</tr>
+<tr>
+<td style="text-align: left;">totalElements</td>
+<td style="text-align: left;">int</td>
+<td>总条目数</td>
+</tr>
+<tr>
+<td style="text-align: left;">size</td>
+<td style="text-align: left;">int</td>
+<td>页面大小</td>
+</tr>
+<tr>
+<td style="text-align: left;">numberOfElements</td>
+<td style="text-align: left;">int</td>
+<td>当前页面条目数</td>
+</tr>
+<tr>
+<td style="text-align: left;">content</td>
+<td style="text-align: left;">array（Object）</td>
+<td>属性条目内容</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.id</td>
+<td style="text-align: left;">是</td>
+<td>int</td>
+<td>产品id</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.name</td>
+<td style="text-align: left;">string</td>
+<td>产品名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.subTitle</td>
+<td style="text-align: left;">string</td>
+<td>产品小标题</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.originalPrice</td>
+<td style="text-align: left;">float</td>
+<td>原始价格</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.promotePrice</td>
+<td style="text-align: left;">float</td>
+<td>优惠价格</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.stock</td>
+<td style="text-align: left;">int</td>
+<td>库存量</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.category</td>
+<td style="text-align: left;">Object</td>
+<td>产品所属分类对象</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.category.id</td>
+<td style="text-align: left;">int</td>
+<td>分类id</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.category.name</td>
+<td style="text-align: left;">string</td>
+<td>分类名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.firstProductImage</td>
+<td style="text-align: left;">Object</td>
+<td>产品单个图片（第一张）</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.firstProductImage.id</td>
+<td style="text-align: left;">int</td>
+<td>产品单个图片（第一张）id</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.firstProductImage.type</td>
+<td style="text-align: left;">int</td>
+<td>产品单个图片（第一张）类型</td>
+</tr>
+<tr>
+<td style="text-align: left;">first</td>
+<td style="text-align: left;">boolean</td>
+<td>是否是第一页</td>
+</tr>
+<tr>
+<td style="text-align: left;">last</td>
+<td style="text-align: left;">boolean</td>
+<td>是否是最后一页</td>
+</tr>
+<tr>
+<td style="text-align: left;">navigatepageNums</td>
+<td style="text-align: left;">array（int）</td>
+<td>导航条数字</td>
+</tr>
+<tr>
+<td style="text-align: left;">hasContent</td>
+<td style="text-align: left;">boolean</td>
+<td>是否有分类条目</td>
+</tr>
+<tr>
+<td style="text-align: left;">hasPrevious</td>
+<td style="text-align: left;">boolean</td>
+<td>是否有上一页</td>
+</tr>
+<tr>
+<td style="text-align: left;">hasNext</td>
+<td style="text-align: left;">boolean</td>
+<td>是否有下一页</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul>
+<p>欢迎使用ShowDoc！</p></div><h3>1.2.3.2、增加产品</h3><div style="margin-left:30px;"><p>欢迎使用ShowDoc！</p>
+<p><strong>简要描述：</strong> </p>
+<ul>
+<li>增加新产品接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://localhost:8080/tmall_springboot/products</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>产品名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">subTitle</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>产品小标题</td>
+</tr>
+<tr>
+<td style="text-align: left;">originalPrice</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">float</td>
+<td>原始价格</td>
+</tr>
+<tr>
+<td style="text-align: left;">promotePrice</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">float</td>
+<td>优惠价格</td>
+</tr>
+<tr>
+<td style="text-align: left;">stock</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>库存量</td>
+</tr>
+<tr>
+<td style="text-align: left;">category</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">Object</td>
+<td>产品所属分类对象</td>
+</tr>
+<tr>
+<td style="text-align: left;">category.id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>分类id</td>
+</tr>
+<tr>
+<td style="text-align: left;">category.name</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>分类名称</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Header：</strong></p>
+<table width='100%' class='codestyle'><pre><code>Content-Type:application/json;charset=UTF-8
+</code></pre></table>
+<p><strong>请求body示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "name":"穿不烂皮鞋",
+    "subTitle":"穿不烂皮鞋，你烂了我都不烂",
+    "originalPrice":"80000",
+    "promotePrice":"80",
+    "stock":"1000",
+    "createDate":"1998-10-21",
+    "category":{
+        "id":"28"
+    }
+}</code></pre></table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "id": 8,
+    "name": "穿不烂皮鞋",
+    "subTitle": "穿不烂皮鞋，你烂了我都不烂",
+    "originalPrice": 80000.0,
+    "promotePrice": 80.0,
+    "stock": 1000,
+    "createDate": 1575792926507,
+    "category": {
+        "id": 28,
+        "name": null
+    },
+    "firstProductImage": null
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int</td>
+<td>产品id</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">string</td>
+<td>产品名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">subTitle</td>
+<td style="text-align: left;">string</td>
+<td>产品小标题</td>
+</tr>
+<tr>
+<td style="text-align: left;">originalPrice</td>
+<td style="text-align: left;">float</td>
+<td>原始价格</td>
+</tr>
+<tr>
+<td style="text-align: left;">promotePrice</td>
+<td style="text-align: left;">float</td>
+<td>优惠价格</td>
+</tr>
+<tr>
+<td style="text-align: left;">stock</td>
+<td style="text-align: left;">int</td>
+<td>库存量</td>
+</tr>
+<tr>
+<td style="text-align: left;">category</td>
+<td style="text-align: left;">Object</td>
+<td>产品所属分类对象</td>
+</tr>
+<tr>
+<td style="text-align: left;">category.id</td>
+<td style="text-align: left;">int</td>
+<td>分类id</td>
+</tr>
+<tr>
+<td style="text-align: left;">category.name</td>
+<td style="text-align: left;">string</td>
+<td>分类名称</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h3>1.2.3.3、删除产品</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>删除产品接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://localhost:8080/tmall_springboot/products/{id}</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>DELETE </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>产品id，注：此项为路径参数</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  null</code></pre></table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul>
+<p>欢迎使用ShowDoc！</p></div><h3>1.2.3.4、修改编辑产品</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>编辑修改产品接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://localhost:8080/tmall_springboot/products</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>PUT </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>产品id</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>产品名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">subTitle</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">string</td>
+<td>产品小标题</td>
+</tr>
+<tr>
+<td style="text-align: left;">originalPrice</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">float</td>
+<td>原始价格</td>
+</tr>
+<tr>
+<td style="text-align: left;">promotePrice</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">float</td>
+<td>优惠价格</td>
+</tr>
+<tr>
+<td style="text-align: left;">stock</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>库存量</td>
+</tr>
+<tr>
+<td style="text-align: left;">category</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">Object</td>
+<td>产品所属分类对象</td>
+</tr>
+<tr>
+<td style="text-align: left;">category.id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>分类id</td>
+</tr>
+<tr>
+<td style="text-align: left;">category.name</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>分类名称</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Header：</strong></p>
+<table width='100%' class='codestyle'><pre><code>Content-Type:application/json;charset=UTF-8
+</code></pre></table>
+<p><strong>请求body示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>{
+    "id": 5,
+    "name": "穿不烂皮鞋",
+    "subTitle": "穿不烂皮鞋，你烂了我都不烂",
+    "originalPrice": 80000.0,
+    "promotePrice": 80.0,
+    "stock": 9000,
+    "createDate":"1998-10-21",
+    "category": {
+        "id": 28,
+        "name": null
+    }
+}</code></pre></table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code> {
+    "id": 5,
+    "name": "穿不烂皮鞋",
+    "subTitle": "穿不烂皮鞋，你烂了我都不烂",
+    "originalPrice": 80000.0,
+    "promotePrice": 80.0,
+    "stock": 9000,
+    "createDate": 908928000000,
+    "category": {
+        "id": 28,
+        "name": null
+    },
+    "firstProductImage": null
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int</td>
+<td>产品id</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">string</td>
+<td>产品名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">subTitle</td>
+<td style="text-align: left;">string</td>
+<td>产品小标题</td>
+</tr>
+<tr>
+<td style="text-align: left;">originalPrice</td>
+<td style="text-align: left;">float</td>
+<td>原始价格</td>
+</tr>
+<tr>
+<td style="text-align: left;">promotePrice</td>
+<td style="text-align: left;">float</td>
+<td>优惠价格</td>
+</tr>
+<tr>
+<td style="text-align: left;">stock</td>
+<td style="text-align: left;">int</td>
+<td>库存量</td>
+</tr>
+<tr>
+<td style="text-align: left;">category</td>
+<td style="text-align: left;">Object</td>
+<td>产品所属分类对象</td>
+</tr>
+<tr>
+<td style="text-align: left;">category.id</td>
+<td style="text-align: left;">int</td>
+<td>分类id</td>
+</tr>
+<tr>
+<td style="text-align: left;">category.name</td>
+<td style="text-align: left;">string</td>
+<td>分类名称</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul>
+<p>欢迎使用ShowDoc！**</p></div><h3>1.2.3.5、获取单个产品</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>获取单个产品接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://127.0.0.1:8080/tmall_springboot/products/{id}</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>get </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>分类id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "id": 5,
+    "name": "穿不烂皮鞋",
+    "subTitle": "穿不烂皮鞋，你烂了我都不烂",
+    "originalPrice": 80000.0,
+    "promotePrice": 80.0,
+    "stock": 9000,
+    "createDate": 908928000000,
+    "category": {
+        "id": 28,
+        "name": "皮鞋"
+    },
+    "firstProductImage": null
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">是</td>
+<td>int</td>
+<td>产品id</td>
+</tr>
+<tr>
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">否</td>
+<td>string</td>
+<td>产品名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">subTitle</td>
+<td style="text-align: left;">否</td>
+<td>string</td>
+<td>产品小标题</td>
+</tr>
+<tr>
+<td style="text-align: left;">originalPrice</td>
+<td style="text-align: left;">否</td>
+<td>float</td>
+<td>原始价格</td>
+</tr>
+<tr>
+<td style="text-align: left;">promotePrice</td>
+<td style="text-align: left;">否</td>
+<td>float</td>
+<td>优惠价格</td>
+</tr>
+<tr>
+<td style="text-align: left;">stock</td>
+<td style="text-align: left;">否</td>
+<td>int</td>
+<td>库存量</td>
+</tr>
+<tr>
+<td style="text-align: left;">category</td>
+<td style="text-align: left;">是</td>
+<td>Object</td>
+<td>产品所属分类对象</td>
+</tr>
+<tr>
+<td style="text-align: left;">category.id</td>
+<td style="text-align: left;">是</td>
+<td>int</td>
+<td>分类id</td>
+</tr>
+<tr>
+<td style="text-align: left;">category.name</td>
+<td style="text-align: left;">是</td>
+<td>string</td>
+<td>分类名称</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul>
+<p>欢迎使用ShowDoc！</p></div></div><h2>1.2.4、产品图片管理</h2><div style="margin-left:0px;"><h3>1.2.4.1、增加产品图片</h3><div style="margin-left:30px;"><p>欢迎使用ShowDoc！</p>
+<p><strong>简要描述：</strong> </p>
+<ul>
+<li>增加产品图片接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://127.0.0.1:8080/tmall_springboot/productImages</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>POST </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">pid</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>产品id</td>
+</tr>
+<tr>
+<td style="text-align: left;">type</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>图片类型（single（单个展示图片）/detail（详情图片））</td>
+</tr>
+<tr>
+<td style="text-align: left;">image</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">binary（img）</td>
+<td>产品图片</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "id": 17,
+    "type": "single"
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int</td>
+<td>图片id</td>
+</tr>
+<tr>
+<td style="text-align: left;">type</td>
+<td style="text-align: left;">string</td>
+<td>图片类型</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div><h3>1.2.4.2、删除产品图片</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>删除产品图片接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://localhost:8080/tmall_springboot/productImages/{id}</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>DELETE </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>产品图片id，注：此项为路径参数</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  null</code></pre></table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul>
+<p>欢迎使用ShowDoc！</p></div><h3>1.2.4.3、删除产品图片</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>删除产品图片接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://127.0.0.1:8080/tmall_springboot/productImages/{id}</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>DELETE </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>产品图片id，注：此项为路径参数</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  null</code></pre></table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul>
+<p>欢迎使用ShowDoc！</p></div></div><h2>1.2.5、属性值管理</h2><div style="margin-left:0px;"><h3>1.2.5.1、获取属性值</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>获取相应产品的属性值接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://localhost:8080/tmall_springboot/products/{pid}/propertyValues</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>get </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">pid</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>产品id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  [
+    {
+        "id": 13,
+        "product": {
+            "id": 5,
+            "name": "穿不烂皮鞋",
+            "subTitle": "穿不烂皮鞋，你烂了我都不烂",
+            "originalPrice": 80000.0,
+            "promotePrice": 80.0,
+            "stock": 9000,
+            "createDate": 908928000000,
+            "category": {
+                "id": 28,
+                "name": "皮鞋"
+            },
+            "firstProductImage": null
+        },
+        "property": {
+            "id": 23,
+            "name": "test7",
+            "category": {
+                "id": 28,
+                "name": "皮鞋"
+            }
+        },
+        "value": null
+    },
+    {
+        "id": 12,
+        "product": {
+            "id": 5,
+            "name": "穿不烂皮鞋",
+            "subTitle": "穿不烂皮鞋，你烂了我都不烂",
+            "originalPrice": 80000.0,
+            "promotePrice": 80.0,
+            "stock": 9000,
+            "createDate": 908928000000,
+            "category": {
+                "id": 28,
+                "name": "皮鞋"
+            },
+            "firstProductImage": null
+        },
+        "property": {
+            "id": 22,
+            "name": "test3",
+            "category": {
+                "id": 28,
+                "name": "皮鞋"
+            }
+        },
+        "value": null
+    },
+    {
+        "id": 4,
+        "product": {
+            "id": 5,
+            "name": "穿不烂皮鞋",
+            "subTitle": "穿不烂皮鞋，你烂了我都不烂",
+            "originalPrice": 80000.0,
+            "promotePrice": 80.0,
+            "stock": 9000,
+            "createDate": 908928000000,
+            "category": {
+                "id": 28,
+                "name": "皮鞋"
+            },
+            "firstProductImage": null
+        },
+        "property": {
+            "id": 8,
+            "name": "适用场合",
+            "category": {
+                "id": 28,
+                "name": "皮鞋"
+            }
+        },
+        "value": "诸事皆宜"
+    },
+    {
+        "id": 3,
+        "product": {
+            "id": 5,
+            "name": "穿不烂皮鞋",
+            "subTitle": "穿不烂皮鞋，你烂了我都不烂",
+            "originalPrice": 80000.0,
+            "promotePrice": 80.0,
+            "stock": 9000,
+            "createDate": 908928000000,
+            "category": {
+                "id": 28,
+                "name": "皮鞋"
+            },
+            "firstProductImage": null
+        },
+        "property": {
+            "id": 7,
+            "name": "适龄人群",
+            "category": {
+                "id": 28,
+                "name": "皮鞋"
+            }
+        },
+        "value": "3~98岁"
+    },
+    {
+        "id": 2,
+        "product": {
+            "id": 5,
+            "name": "穿不烂皮鞋",
+            "subTitle": "穿不烂皮鞋，你烂了我都不烂",
+            "originalPrice": 80000.0,
+            "promotePrice": 80.0,
+            "stock": 9000,
+            "createDate": 908928000000,
+            "category": {
+                "id": 28,
+                "name": "皮鞋"
+            },
+            "firstProductImage": null
+        },
+        "property": {
+            "id": 6,
+            "name": "材质",
+            "category": {
+                "id": 28,
+                "name": "皮鞋"
+            }
+        },
+        "value": "麒麟皮"
+    },
+    {
+        "id": 1,
+        "product": {
+            "id": 5,
+            "name": "穿不烂皮鞋",
+            "subTitle": "穿不烂皮鞋，你烂了我都不烂",
+            "originalPrice": 80000.0,
+            "promotePrice": 80.0,
+            "stock": 9000,
+            "createDate": 908928000000,
+            "category": {
+                "id": 28,
+                "name": "皮鞋"
+            },
+            "firstProductImage": null
+        },
+        "property": {
+            "id": 4,
+            "name": "软度",
+            "category": {
+                "id": 28,
+                "name": "皮鞋"
+            }
+        },
+        "value": "超级硬"
+    }
+]</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int</td>
+<td>属性id</td>
+</tr>
+<tr>
+<td style="text-align: left;">product</td>
+<td style="text-align: left;">Object</td>
+<td>属性所对应产品对象（内容详见获取单个产品接口文档）</td>
+</tr>
+<tr>
+<td style="text-align: left;">property</td>
+<td style="text-align: left;">Object</td>
+<td>属性值所对应属性对象（内容详见获取单个属性接口文档）</td>
+</tr>
+<tr>
+<td style="text-align: left;">value</td>
+<td style="text-align: left;">string</td>
+<td>属性值内容</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul>
+<p>欢迎使用ShowDoc！</p></div><h3>1.2.5.2、编辑修改属性值</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>编辑修改属性值接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://localhost:8080/tmall_springboot/propertyValues</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>PUT </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>属性值id</td>
+</tr>
+<tr>
+<td style="text-align: left;">value</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">string</td>
+<td>属性值内容</td>
+</tr>
+<tr>
+<td style="text-align: left;">product</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">Object</td>
+<td>属性值所属产品对象</td>
+</tr>
+<tr>
+<td style="text-align: left;">product.id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>产品id</td>
+</tr>
+<tr>
+<td style="text-align: left;">property</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">Object</td>
+<td>属性值所属属性对象</td>
+</tr>
+<tr>
+<td style="text-align: left;">property.id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>属性id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Header：</strong></p>
+<table width='100%' class='codestyle'><pre><code>Content-Type:application/json;charset=UTF-8
+</code></pre></table>
+<p><strong>请求body示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "id":"3",
+    "product":{
+        "id":"5"
+    },
+    "property":{
+        "id":"7"    
+    },
+    "value":"3~98岁"
+}</code></pre></table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "id": 3,
+    "product": {
+        "id": 5,
+        "name": null,
+        "subTitle": null,
+        "originalPrice": 0.0,
+        "promotePrice": 0.0,
+        "stock": 0,
+        "createDate": null,
+        "category": null,
+        "firstProductImage": null
+    },
+    "property": {
+        "id": 7,
+        "name": null,
+        "category": null
+    },
+    "value": "3~98岁"
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">int</td>
+<td>属性id</td>
+</tr>
+<tr>
+<td style="text-align: left;">product</td>
+<td style="text-align: left;">Object</td>
+<td>属性所对应产品对象（内容详见获取单个产品接口文档）</td>
+</tr>
+<tr>
+<td style="text-align: left;">property</td>
+<td style="text-align: left;">Object</td>
+<td>属性值所对应属性对象（内容详见获取单个属性接口文档）</td>
+</tr>
+<tr>
+<td style="text-align: left;">value</td>
+<td style="text-align: left;">string</td>
+<td>属性值内容</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul>
+<p>欢迎使用ShowDoc！**</p></div></div><h2>1.2.6、用户管理</h2><div style="margin-left:0px;"><h3>1.2.6.1、用户分页获取</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>用户管理列表项分页获取（含导航栏信息）</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://localhost:8080/tmall_springboot/users</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">start</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>页码</td>
+</tr>
+<tr>
+<td style="text-align: left;">size</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>每页大小</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "navigatePages": 5,
+    "totalPages": 1,
+    "number": 0,
+    "totalElements": 5,
+    "size": 5,
+    "numberOfElements": 5,
+    "content": [
+        {
+            "id": 15,
+            "name": "测试用户5",
+            "password": "password5",
+            "salt": null,
+            "anonymousName": "测***5"
+        },
+        {
+            "id": 14,
+            "name": "测试用户4",
+            "password": "password4",
+            "salt": null,
+            "anonymousName": "测***4"
+        },
+        {
+            "id": 13,
+            "name": "测试用户3",
+            "password": "password3",
+            "salt": null,
+            "anonymousName": "测***3"
+        },
+        {
+            "id": 12,
+            "name": "测试用户2",
+            "password": "password2",
+            "salt": null,
+            "anonymousName": "测***2"
+        },
+        {
+            "id": 11,
+            "name": "测试用户1",
+            "password": "password1",
+            "salt": null,
+            "anonymousName": "测***1"
+        }
+    ],
+    "first": true,
+    "last": true,
+    "navigatepageNums": [
+        1
+    ],
+    "hasPrevious": false,
+    "hasContent": true,
+    "hasNext": false
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">navigatePages</td>
+<td style="text-align: left;">int</td>
+<td>导航栏展示页码数</td>
+</tr>
+<tr>
+<td style="text-align: left;">totalPages</td>
+<td style="text-align: left;">int</td>
+<td>总页数</td>
+</tr>
+<tr>
+<td style="text-align: left;">number</td>
+<td style="text-align: left;">int</td>
+<td>当前页码数</td>
+</tr>
+<tr>
+<td style="text-align: left;">totalElements</td>
+<td style="text-align: left;">int</td>
+<td>总条目数</td>
+</tr>
+<tr>
+<td style="text-align: left;">size</td>
+<td style="text-align: left;">int</td>
+<td>页面大小</td>
+</tr>
+<tr>
+<td style="text-align: left;">numberOfElements</td>
+<td style="text-align: left;">int</td>
+<td>当前页面条目数</td>
+</tr>
+<tr>
+<td style="text-align: left;">content</td>
+<td style="text-align: left;">array（Object）</td>
+<td>用户条目内容</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.id</td>
+<td style="text-align: left;">int</td>
+<td>用户id</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.name</td>
+<td style="text-align: left;">string</td>
+<td>用户名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.password</td>
+<td style="text-align: left;">string</td>
+<td>用户密码</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.salt</td>
+<td style="text-align: left;">string</td>
+<td>加密盐</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.anonymousName</td>
+<td style="text-align: left;">string</td>
+<td>用户匿名名称</td>
+</tr>
+<tr>
+<td style="text-align: left;">first</td>
+<td style="text-align: left;">boolean</td>
+<td>是否是第一页</td>
+</tr>
+<tr>
+<td style="text-align: left;">last</td>
+<td style="text-align: left;">boolean</td>
+<td>是否是最后一页</td>
+</tr>
+<tr>
+<td style="text-align: left;">navigatepageNums</td>
+<td style="text-align: left;">array（int）</td>
+<td>导航条数字</td>
+</tr>
+<tr>
+<td style="text-align: left;">hasContent</td>
+<td style="text-align: left;">boolean</td>
+<td>是否有分类条目</td>
+</tr>
+<tr>
+<td style="text-align: left;">hasPrevious</td>
+<td style="text-align: left;">boolean</td>
+<td>是否有上一页</td>
+</tr>
+<tr>
+<td style="text-align: left;">hasNext</td>
+<td style="text-align: left;">boolean</td>
+<td>是否有下一页</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul>
+<p>欢迎使用ShowDoc！</p></div></div><h2>1.2.7、订单管理</h2><div style="margin-left:0px;"><h3>1.2.7.1、分页获取订单</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>订单管理列表项分页获取（含导航栏信息）</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://localhost:8080/tmall_springboot/users</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>GET </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">start</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>页码</td>
+</tr>
+<tr>
+<td style="text-align: left;">size</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">int</td>
+<td>每页大小</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "navigatePages": 5,
+    "totalPages": 1,
+    "number": 0,
+    "totalElements": 1,
+    "size": 5,
+    "numberOfElements": 1,
+    "content": [
+        {
+            "id": 1,
+            "user": {
+                "id": 14,
+                "name": "测试用户4",
+                "password": "password4",
+                "salt": null,
+                "anonymousName": "测***4"
+            },
+            "orderCode": "201608241638122609867",
+            "address": "某某市，某某区，某某街道，某某号 ",
+            "post": "610000",
+            "receiver": "某某某",
+            "mobile": "15111111111",
+            "createDate": 1483027200000,
+            "payDate": null,
+            "deliveryDate": 1575715185000,
+            "confirmDate": null,
+            "status": "waitConfirm",
+            "orderItems": [
+                {
+                    "id": 2,
+                    "product": {
+                        "id": 7,
+                        "name": "车中车自行车",
+                        "subTitle": "骑得车中车，方为人上人！",
+                        "originalPrice": 20.0,
+                        "promotePrice": 9999.0,
+                        "stock": 100,
+                        "createDate": 1575706476000,
+                        "category": {
+                            "id": 27,
+                            "name": "自行车"
+                        },
+                        "firstProductImage": {
+                            "id": 16,
+                            "type": "single"
+                        }
+                    },
+                    "order": null,
+                    "user": {
+                        "id": 14,
+                        "name": "测试用户4",
+                        "password": "password4",
+                        "salt": null,
+                        "anonymousName": "测***4"
+                    },
+                    "number": 300
+                },
+                {
+                    "id": 1,
+                    "product": {
+                        "id": 5,
+                        "name": "穿不烂皮鞋",
+                        "subTitle": "穿不烂皮鞋，你烂了我都不烂",
+                        "originalPrice": 80000.0,
+                        "promotePrice": 80.0,
+                        "stock": 9000,
+                        "createDate": 908928000000,
+                        "category": {
+                            "id": 28,
+                            "name": "皮鞋"
+                        },
+                        "firstProductImage": {
+                            "id": 17,
+                            "type": "single"
+                        }
+                    },
+                    "order": null,
+                    "user": {
+                        "id": 14,
+                        "name": "测试用户4",
+                        "password": "password4",
+                        "salt": null,
+                        "anonymousName": "测***4"
+                    },
+                    "number": 20
+                }
+            ],
+            "total": 3001300.0,
+            "totalNumber": 320,
+            "statusDesc": "等收",
+            "userMessage": null
+        }
+    ],
+    "first": true,
+    "last": true,
+    "navigatepageNums": [
+        1
+    ],
+    "hasPrevious": false,
+    "hasContent": true,
+    "hasNext": false
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">navigatePages</td>
+<td style="text-align: left;">int</td>
+<td>导航栏展示页码数</td>
+</tr>
+<tr>
+<td style="text-align: left;">totalPages</td>
+<td style="text-align: left;">int</td>
+<td>总页数</td>
+</tr>
+<tr>
+<td style="text-align: left;">number</td>
+<td style="text-align: left;">int</td>
+<td>当前页码数</td>
+</tr>
+<tr>
+<td style="text-align: left;">totalElements</td>
+<td style="text-align: left;">int</td>
+<td>总条目数</td>
+</tr>
+<tr>
+<td style="text-align: left;">size</td>
+<td style="text-align: left;">int</td>
+<td>页面大小</td>
+</tr>
+<tr>
+<td style="text-align: left;">numberOfElements</td>
+<td style="text-align: left;">int</td>
+<td>当前页面条目数</td>
+</tr>
+<tr>
+<td style="text-align: left;">content</td>
+<td style="text-align: left;">array（Object）</td>
+<td>用户条目内容</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.id</td>
+<td style="text-align: left;">int</td>
+<td>用户id</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.user</td>
+<td style="text-align: left;">Object</td>
+<td>用户对象（详见获取单个用户接口文档）</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.orderCode</td>
+<td style="text-align: left;">string</td>
+<td>订单号</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.address</td>
+<td style="text-align: left;">string</td>
+<td>收货地址</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.post</td>
+<td style="text-align: left;">string</td>
+<td>收货邮编</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.receiver</td>
+<td style="text-align: left;">string</td>
+<td>收货人姓名</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.mobile</td>
+<td style="text-align: left;">string</td>
+<td>收货电话</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.createDate</td>
+<td style="text-align: left;">date</td>
+<td>下单日期</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.payDate</td>
+<td style="text-align: left;">date</td>
+<td>付款日期</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.delivery</td>
+<td style="text-align: left;">date</td>
+<td>Date</td>
+<td>发货日期</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.confirmDate</td>
+<td style="text-align: left;">Date</td>
+<td>收货日期</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.status</td>
+<td style="text-align: left;">string</td>
+<td>订单状态</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.orderItems</td>
+<td style="text-align: left;">Object</td>
+<td>订单项</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.orderItems.id</td>
+<td style="text-align: left;">int</td>
+<td>订单项id</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.orderItems.product</td>
+<td style="text-align: left;">Object</td>
+<td>订单项对应产品</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.orderItems.user</td>
+<td style="text-align: left;">Object</td>
+<td>订单项对应用户</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.orderItems.number</td>
+<td style="text-align: left;">Object</td>
+<td>产品数量</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.totalNumber</td>
+<td style="text-align: left;">int</td>
+<td>订单产品总量</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.total</td>
+<td style="text-align: left;">float</td>
+<td>订单总价</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.statusDesc</td>
+<td style="text-align: left;">string</td>
+<td>订单状态(中文)</td>
+</tr>
+<tr>
+<td style="text-align: left;">content.userMessage</td>
+<td style="text-align: left;">string</td>
+<td>用户信息</td>
+</tr>
+<tr>
+<td style="text-align: left;">first</td>
+<td style="text-align: left;">boolean</td>
+<td>是否是第一页</td>
+</tr>
+<tr>
+<td style="text-align: left;">last</td>
+<td style="text-align: left;">boolean</td>
+<td>是否是最后一页</td>
+</tr>
+<tr>
+<td style="text-align: left;">navigatepageNums</td>
+<td style="text-align: left;">array（int）</td>
+<td>导航条数字</td>
+</tr>
+<tr>
+<td style="text-align: left;">hasContent</td>
+<td style="text-align: left;">boolean</td>
+<td>是否有分类条目</td>
+</tr>
+<tr>
+<td style="text-align: left;">hasPrevious</td>
+<td style="text-align: left;">boolean</td>
+<td>是否有上一页</td>
+</tr>
+<tr>
+<td style="text-align: left;">hasNext</td>
+<td style="text-align: left;">boolean</td>
+<td>是否有下一页</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul>
+<p>欢迎使用ShowDoc！</p></div><h3>1.2.7.2、订单发货</h3><div style="margin-left:30px;"><p><strong>简要描述：</strong> </p>
+<ul>
+<li>订单发货操作接口</li>
+</ul>
+<p><strong>请求URL：</strong> </p>
+<ul>
+<li><code>http://localhost:8080/tmall_springboot/deliverOrder/{id}</code></li>
+</ul>
+<p><strong>请求方式：</strong></p>
+<ul>
+<li>PUT </li>
+</ul>
+<p><strong>参数：</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">必选</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">int</td>
+<td>订单id</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回示例</strong></p>
+<table width='100%' class='codestyle'><pre><code>  {
+    "code": 0,
+    "message": null,
+    "data": null
+}</code></pre></table>
+<p><strong>返回参数说明</strong> </p>
+<table>
+<thead><tr style='background-color: rgb(0, 136, 204); color: rgb(255, 255, 255);'>
+<th style="text-align: left;">参数名</th>
+<th style="text-align: left;">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">code</td>
+<td style="text-align: left;">int</td>
+<td>操作状态（0表示成功/1表示失败）</td>
+</tr>
+<tr>
+<td style="text-align: left;">message</td>
+<td style="text-align: left;">string</td>
+<td>错误信息</td>
+</tr>
+<tr>
+<td style="text-align: left;">data</td>
+<td style="text-align: left;">Object</td>
+<td>返回数据</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong> </p>
+<ul>
+<li>更多返回错误代码请看首页的错误代码描述</li>
+</ul></div></div></div></div></body></html>
