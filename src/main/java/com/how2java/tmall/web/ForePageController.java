@@ -24,4 +24,9 @@ public class ForePageController {
     public String registerSuccess(){
         return "fore/registerSuccess";
     }
+
+    @GetMapping(value = "login")
+    public String login(){
+        return "fore/login";
+    }
 }
