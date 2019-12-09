@@ -3,6 +3,7 @@ package com.how2java.tmall.service;
 import com.how2java.tmall.dao.OrderItemDAO;
 import com.how2java.tmall.pojo.Order;
 import com.how2java.tmall.pojo.OrderItem;
+import com.how2java.tmall.pojo.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,5 +36,18 @@ public class OrderItemService {
 
     public List<OrderItem> listByOrder(Order order){
         return orderItemDAO.findByOrderOrderByIdDesc(order);
+    }
+
+    public int getSaleCount(Product product){
+        List<OrderItem> orderItems=orderItemDAO.findByProduct(product);
+        int result=0;
+        for(OrderItem orderItem:orderItems){
+            if(orderItem.getOrder()!=null){
+                if(orderItem.getOrder().getPayDate()!=null){
+                    result+=orderItem.getNumber();
+                }
+            }
+        }
+        return result;
     }
 }
