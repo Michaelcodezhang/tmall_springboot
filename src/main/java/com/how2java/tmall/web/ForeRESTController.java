@@ -1,5 +1,6 @@
 package com.how2java.tmall.web;
 
+import com.how2java.tmall.comparator.*;
 import com.how2java.tmall.pojo.*;
 import com.how2java.tmall.service.*;
 import com.how2java.tmall.util.Result;
@@ -8,9 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.HtmlUtils;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 public class ForeRESTController {
@@ -23,7 +22,7 @@ public class ForeRESTController {
     @Autowired ReviewService reviewService;
 
     @GetMapping("/forehome")
-    public Object home(){
+    public Object home() throws Exception{
         List<Category> cs=categoryService.list();
         productService.fill(cs);
         productService.fillByRow(cs);
@@ -32,7 +31,7 @@ public class ForeRESTController {
     }
 
     @PostMapping("/foreregister")
-    public Object register(@RequestBody User user){
+    public Object register(@RequestBody User user)throws Exception{
         String name=user.getName();
         String password=user.getPassword();
         name= HtmlUtils.htmlEscape(name);
@@ -51,7 +50,7 @@ public class ForeRESTController {
     }
 
     @PostMapping("/forelogin")
-    public Object login(@RequestBody User userParam, HttpSession session){
+    public Object login(@RequestBody User userParam, HttpSession session) throws Exception{
         String name=userParam.getName();
         String password=userParam.getPassword();
         name=HtmlUtils.htmlEscape(name);
@@ -67,7 +66,7 @@ public class ForeRESTController {
     }
 
     @GetMapping("/foreproduct/{pid}")
-    public Object product(@PathVariable("pid") int pid){
+    public Object product(@PathVariable("pid") int pid) throws Exception{
         Product product=productService.get(pid);
         //设置产品页面图片
         List<ProductImage> productSingleImages=productImageService.listSingleProductImage(product);
@@ -87,4 +86,42 @@ public class ForeRESTController {
         return Result.success(map);
     }
 
+    @GetMapping("/forecheckLogin")
+    public Object checkLogin(HttpSession session) throws Exception{
+        User user=(User) session.getAttribute("user");
+        if(user!=null){
+            return Result.success();
+        }
+        return Result.fail("未登录");
+    }
+
+    @GetMapping("/forecategory/{cid}")
+    public Object category(@PathVariable("cid") int cid,String sort)
+            throws Exception{
+        Category category=categoryService.get(cid);
+        productService.fill(category);
+        productService.setSaleAndReviewNumber(category.getProducts());
+        categoryService.removeCategoryFromProduct(category);
+
+        if(sort!=null){
+            switch (sort){
+                case "review":
+                    Collections.sort(category.getProducts(),new ProductReviewComparator());
+                    break;
+                case "date":
+                    Collections.sort(category.getProducts(),new ProductDateComparator());
+                    break;
+                case "saleCount":
+                    Collections.sort(category.getProducts(),new ProductSaleCountComparator());
+                    break;
+                case "price":
+                    Collections.sort(category.getProducts(),new ProductPriceComparator());
+                    break;
+                case "all":
+                    Collections.sort(category.getProducts(),new ProductAllComparator());
+                    break;
+            }
+        }
+        return category;
+    }
 }

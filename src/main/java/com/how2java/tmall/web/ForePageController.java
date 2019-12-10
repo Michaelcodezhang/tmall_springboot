@@ -43,4 +43,9 @@ public class ForePageController {
     public String product(){
         return "fore/product";
     }
+
+    @GetMapping(value = "/category")
+    public String category(){
+        return "fore/category";
+    }
 }
