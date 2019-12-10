@@ -20,6 +20,7 @@ public class ForeRESTController {
     @Autowired ProductImageService productImageService;
     @Autowired PropertyValueService propertyValueService;
     @Autowired ReviewService reviewService;
+    @Autowired OrderItemService orderItemService;
 
     @GetMapping("/forehome")
     public Object home() throws Exception{
@@ -134,5 +135,58 @@ public class ForeRESTController {
         productImageService.setFirstProductImages(products);
         productService.setSaleAndReviewNumber(products);
         return products;
+    }
+
+    @GetMapping("forebuyone")
+    public Object buyone(int pid,int num,HttpSession session){
+        return buyOneAndAddCart(pid,num,session);
+    }
+
+    private int buyOneAndAddCart(int pid,int num,HttpSession session){
+        Product product=productService.get(pid);
+        int oiid=0;
+
+        User user=(User) session.getAttribute("user");
+        boolean found=false;
+        List<OrderItem> orderItems=orderItemService.listByUser(user);
+        for(OrderItem orderItem:orderItems){
+            if(orderItem.getProduct().getId()==product.getId()){
+                orderItem.setNumber(orderItem.getNumber()+num);
+                orderItemService.update(orderItem);
+                found=true;
+                oiid=orderItem.getId();
+                break;
+            }
+        }
+        if(!found){
+            OrderItem orderItem=new OrderItem();
+            orderItem.setUser(user);
+            orderItem.setNumber(num);
+            orderItem.setProduct(product);
+            orderItemService.add(orderItem);
+            oiid=orderItem.getId();
+        }
+        return oiid;
+    }
+
+    @GetMapping("/forebuy")
+    public Object buy(String[] oiid,HttpSession session){
+        List<OrderItem> orderItems=new ArrayList<>();
+        float total=0;
+
+        for(String strid:oiid){
+            int id=Integer.parseInt(strid);
+            OrderItem orderItem=orderItemService.get(id);
+            total+=orderItem.getProduct().getPromotePrice()*orderItem.getNumber();
+            orderItems.add(orderItem);
+        }
+
+        productImageService.setFirstProductImageOnOrderItems(orderItems);
+
+        session.setAttribute("ois",orderItems);
+        Map<String,Object> map=new HashMap<>();
+        map.put("orderItems",orderItems);
+        map.put("total",total);
+        return Result.success(map);
     }
 }
