@@ -189,4 +189,19 @@ public class ForeRESTController {
         map.put("total",total);
         return Result.success(map);
     }
+
+    @GetMapping("/foreaddCart")
+    public Object addCart(int pid,int num,HttpSession session){
+        buyOneAndAddCart(pid,num,session);
+        return Result.success();
+    }
+
+    @GetMapping("/forecart")
+    public Object cart(HttpSession session){
+        User user=(User) session.getAttribute("user");
+        System.out.println(user);
+        List<OrderItem> orderItems=orderItemService.listByUser(user);
+        productImageService.setFirstProductImageOnOrderItems(orderItems);
+        return orderItems;
+    }
 }
