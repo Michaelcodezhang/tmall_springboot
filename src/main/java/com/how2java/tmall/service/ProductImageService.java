@@ -24,10 +24,6 @@ public class ProductImageService {
         productImageDAO.delete(id);
     }
 
-//    public void update(ProductImage bean){
-//        productImageDAO.save(bean);
-//    }
-
     public ProductImage get(int id){
         return productImageDAO.findOne(id);
     }
