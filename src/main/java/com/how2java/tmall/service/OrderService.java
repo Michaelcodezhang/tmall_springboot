@@ -23,6 +23,7 @@ public class OrderService {
     public static final String delete="delete";
 
     @Autowired OrderDAO orderDAO;
+    @Autowired OrderItemService orderItemService;
 
     public Page4Navigator<Order> list(int start,int size,int navigatePages){
         Sort sort=new Sort(Sort.Direction.DESC,"id");
@@ -50,5 +51,21 @@ public class OrderService {
 
     public void update(Order bean){
         orderDAO.save(bean);
+    }
+
+    public void add(Order bean){
+        orderDAO.save(bean);
+    }
+
+    public float add(Order order,List<OrderItem> orderItems){
+        float total=0;
+        add(order);
+
+        for(OrderItem orderItem:orderItems){
+            orderItem.setOrder(order);
+            orderItemService.update(orderItem);
+            total+=orderItem.getProduct().getPromotePrice()*orderItem.getNumber();
+        }
+        return total;
     }
 }
