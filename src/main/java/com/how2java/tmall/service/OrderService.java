@@ -3,7 +3,9 @@ package com.how2java.tmall.service;
 import com.how2java.tmall.dao.OrderDAO;
 import com.how2java.tmall.pojo.Order;
 import com.how2java.tmall.pojo.OrderItem;
+import com.how2java.tmall.pojo.User;
 import com.how2java.tmall.util.Page4Navigator;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -67,5 +69,15 @@ public class OrderService {
             total+=orderItem.getProduct().getPromotePrice()*orderItem.getNumber();
         }
         return total;
+    }
+
+    public List<Order> listByUserWithoutDelete(User user){
+        List<Order> orders=listByUserAndNotDeleted(user);
+        orderItemService.fill(orders);
+        return orders;
+    }
+
+    public List<Order> listByUserAndNotDeleted(User user){
+        return orderDAO.findByUserAndStatusNotOrderByIdDesc(user,OrderService.delete);
     }
 }
