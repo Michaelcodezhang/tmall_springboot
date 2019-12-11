@@ -88,4 +88,9 @@ public class ForePageController {
     public String orderConfirmed(){
         return "fore/orderConfirmed";
     }
+
+    @GetMapping(value = "/review")
+    public String review(){
+        return "fore/review";
+    }
 }
