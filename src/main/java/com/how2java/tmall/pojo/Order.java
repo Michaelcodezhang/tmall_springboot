@@ -26,7 +26,7 @@ public class Order {
     private String post;
     private String receiver;
     private String mobile;
-    private String UserMessage;
+    private String userMessage;
     private Date createDate;
     private Date payDate;
     private Date deliveryDate;
@@ -71,7 +71,7 @@ public class Order {
     }
 
     public String getUserMessage() {
-        return UserMessage;
+        return userMessage;
     }
 
     public Date getCreateDate() {
@@ -167,7 +167,7 @@ public class Order {
     }
 
     public void setUserMessage(String userMessage) {
-        UserMessage = userMessage;
+        userMessage = userMessage;
     }
 
     public void setCreateDate(Date createDate) {

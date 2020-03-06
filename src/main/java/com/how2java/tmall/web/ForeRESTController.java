@@ -203,7 +203,6 @@ public class ForeRESTController {
     @GetMapping("/forecart")
     public Object cart(HttpSession session){
         User user=(User) session.getAttribute("user");
-        System.out.println(user);
         List<OrderItem> orderItems=orderItemService.listByUser(user);
         productImageService.setFirstProductImageOnOrderItems(orderItems);
         return orderItems;
@@ -271,7 +270,6 @@ public class ForeRESTController {
 
     @GetMapping("/forebought")
     public Object bought(HttpSession session){
-        System.out.println("bought已进入");
         User user=(User) session.getAttribute("user");
         if(user==null){
             return Result.fail("未登录");
