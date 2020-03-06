@@ -5,12 +5,19 @@ import com.how2java.tmall.pojo.Order;
 import com.how2java.tmall.pojo.OrderItem;
 import com.how2java.tmall.pojo.Product;
 import com.how2java.tmall.pojo.User;
+import com.how2java.tmall.util.SpringContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import sun.plugin2.main.server.ServerPrintHelper;
+import sun.security.x509.OIDMap;
 
 import java.util.List;
 
 @Service
+@CacheConfig(cacheNames = "orderItems")
 public class OrderItemService {
     @Autowired OrderItemDAO orderItemDAO;
     @Autowired ProductImageService productImageService;
@@ -22,7 +29,8 @@ public class OrderItemService {
     }
 
     public void fill(Order order){
-        List<OrderItem> orderItems=listByOrder(order);
+        OrderItemService orderItemService= SpringContextUtil.getBean(OrderItemService.class);
+        List<OrderItem> orderItems=orderItemService.listByOrder(order);
         float total=0;
         int totalNumber=0;
         for(OrderItem oi:orderItems){
@@ -35,12 +43,14 @@ public class OrderItemService {
         order.setTotalNumber(totalNumber);
     }
 
+    @Cacheable(key = "'orderItems-oid'+#p0.id")
     public List<OrderItem> listByOrder(Order order){
         return orderItemDAO.findByOrderOrderByIdDesc(order);
     }
 
     public int getSaleCount(Product product){
-        List<OrderItem> orderItems=orderItemDAO.findByProduct(product);
+        OrderItemService orderItemService= SpringContextUtil.getBean(OrderItemService.class);
+        List<OrderItem> orderItems=orderItemService.listByProduct(product);
         int result=0;
         for(OrderItem orderItem:orderItems){
             if(orderItem.getOrder()!=null){
@@ -52,22 +62,32 @@ public class OrderItemService {
         return result;
     }
 
+    @Cacheable(key="'orderItems-pid-'+ #p0.id")
+    public List<OrderItem> listByProduct(Product product) {
+        return orderItemDAO.findByProduct(product);
+    }
+
+    @Cacheable(key = "'orderItems-uid-'+#p0.id")
     public List<OrderItem> listByUser(User user){
         return orderItemDAO.findByUserAndOrderIsNull(user);
     }
 
+    @CacheEvict(allEntries = true)
     public void add(OrderItem orderItem){
         orderItemDAO.save(orderItem);
     }
 
+    @CacheEvict(allEntries = true)
     public void delete(int id){
         orderItemDAO.delete(id);
     }
 
+    @CacheEvict(allEntries = true)
     public void update(OrderItem orderItem){
         orderItemDAO.save(orderItem);
     }
 
+    @Cacheable(key = "'orderItems-one-'+#p0")
     public OrderItem get(int id){
         return orderItemDAO.findOne(id);
     }
