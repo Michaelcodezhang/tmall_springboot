@@ -5,7 +5,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>tmall_springboot</name>
     <description>tmall_springboot</description>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -88,12 +88,6 @@
             <version>5.1.21</version>
         </dependency>
 
-        <!-- junit -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version> 4.12</version>
-        </dependency>
         <!-- commons-lang -->
         <dependency>
             <groupId>commons-lang</groupId>
